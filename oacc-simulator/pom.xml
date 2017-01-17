@@ -17,6 +17,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.acciente.oacc</groupId>
+      <artifactId>acciente-oacc</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>com.github.awzell.oacc-permissions</groupId>
       <artifactId>oacc-liquibase</artifactId>
       <scope>test</scope>

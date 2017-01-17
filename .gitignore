@@ -16,3 +16,7 @@ target/
 
 # vim temporary files
 *.swp
+
+# IntelliJ IDEA
+.idea/
+*.iml
