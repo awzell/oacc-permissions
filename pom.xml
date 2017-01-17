@@ -1,0 +1,27 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.awzell.oacc-permissions</groupId>
+  <artifactId>modules</artifactId>
+  <version>1.0-dev</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>oacc-liquibase</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+    </dependencies>
+  </dependencyManagement>
+</project>
