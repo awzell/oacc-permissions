@@ -13,3 +13,6 @@ hs_err_pid*
 
 # Maven build artifacts
 target/
+
+# vim temporary files
+*.swp

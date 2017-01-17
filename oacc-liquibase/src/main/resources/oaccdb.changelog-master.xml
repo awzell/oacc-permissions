@@ -6,7 +6,5 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
   objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 
-  <changeSet id="1" author="awzell" dbms="hsqldb">
-    <sqlFile path="hsqldb/create_database.sql"/>
-  </changeSet>
+  <include relativeToChangelogFile="true" file="oaccdb.changelog-1.0.xml"/>
 </databaseChangeLog>

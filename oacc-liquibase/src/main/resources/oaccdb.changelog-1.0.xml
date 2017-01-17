@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
+  objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+
+  <changeSet id="1" author="awzell">
+    <sqlFile dbms="hsqldb" path="hsqldb/create_database.sql" stripComments="true"/>
+  </changeSet>
+
+  <changeSet id="2" author="awzell">
+    <sqlFile dbms="hsqldb" path="hsqldb/create_schema.sql" stripComments="true"/>
+  </changeSet>
+
+  <changeSet id="3" author="awzell">
+    <sqlFile dbms="hsqldb" path="hsqldb/create_tables.sql" stripComments="true"/>
+  </changeSet>
+
+  <changeSet id="4" author="awzell">
+    <sqlFile dbms="hsqldb" path="hsqldb/create_user.sql" stripComments="true"/>
+  </changeSet>
+</databaseChangeLog>
