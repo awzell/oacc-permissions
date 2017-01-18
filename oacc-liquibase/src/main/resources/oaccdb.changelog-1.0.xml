@@ -6,19 +6,23 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
   objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 
-  <changeSet id="1" author="awzell">
-    <sqlFile dbms="hsqldb" path="hsqldb/create_database.sql" stripComments="true"/>
+  <changeSet id="1" author="awzell" dbms="hsqldb">
+    <sqlFile path="hsqldb/create_database.sql" stripComments="true"/>
   </changeSet>
 
-  <changeSet id="2" author="awzell">
-    <sqlFile dbms="hsqldb" path="hsqldb/create_schema.sql" stripComments="true"/>
+  <changeSet id="1" author="awzell" dbms="postgresql" runInTransaction="false">
+    <sqlFile path="postgresql/create_database.sql" stripComments="true"/>
   </changeSet>
 
-  <changeSet id="3" author="awzell">
-    <sqlFile dbms="hsqldb" path="hsqldb/create_tables.sql" stripComments="true"/>
+  <changeSet id="2" author="awzell" dbms="hsqldb">
+    <sqlFile path="hsqldb/create_schema.sql" stripComments="true"/>
+    <sqlFile path="hsqldb/create_tables.sql" stripComments="true"/>
+    <sqlFile path="hsqldb/create_user.sql" stripComments="true"/>
   </changeSet>
 
-  <changeSet id="4" author="awzell">
-    <sqlFile dbms="hsqldb" path="hsqldb/create_user.sql" stripComments="true"/>
+  <changeSet id="2" author="awzell" dbms="postgresql">
+    <sqlFile path="postgresql/create_schema.sql" stripComments="true"/>
+    <sqlFile path="postgresql/create_tables.sql" stripComments="true"/>
+    <sqlFile path="postgresql/create_user.sql" stripComments="true"/>
   </changeSet>
 </databaseChangeLog>

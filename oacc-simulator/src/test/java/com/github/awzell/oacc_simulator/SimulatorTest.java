@@ -8,6 +8,8 @@ import com.acciente.oacc.helper.SQLAccessControlSystemResetUtil;
 import com.acciente.oacc.sql.SQLAccessControlContextFactory;
 import com.acciente.oacc.sql.SQLProfile;
 
+import com.opentable.db.postgres.embedded.EmbeddedPostgres;
+
 import liquibase.integration.spring.SpringLiquibase;
 
 import org.slf4j.Logger;
@@ -15,8 +17,6 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -27,6 +27,7 @@ import org.testng.annotations.Test;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.SQLException;
 
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class)
@@ -50,7 +51,7 @@ public class SimulatorTest extends AbstractTestNGSpringContextTests {
     SQLAccessControlSystemResetUtil.resetOACC(ds, schema, SYS_PASSWORD);
 
     ctx = SQLAccessControlContextFactory.getAccessControlContext(
-      ds, schema, SQLProfile.HSQLDB_2_3_NON_RECURSIVE);
+      ds, schema, SQLProfile.PostgreSQL_9_3_RECURSIVE);
   }
 
   private Logger logger() {
@@ -66,11 +67,14 @@ public class SimulatorTest extends AbstractTestNGSpringContextTests {
 
   @Configuration
   static class ContextConfiguration {
+    @Bean(destroyMethod = "close")
+    public EmbeddedPostgres epg() throws IOException {
+      return EmbeddedPostgres.start();
+    }
+
     @Bean
-    public DataSource dataSource() {
-      return new EmbeddedDatabaseBuilder().setName("oaccdb")
-        .setType(EmbeddedDatabaseType.HSQL)
-        .build();
+    public DataSource dataSource(EmbeddedPostgres epg) {
+      return epg.getPostgresDatabase();
     }
 
     @Bean
