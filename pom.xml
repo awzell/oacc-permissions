@@ -65,15 +65,15 @@
       </dependency>
 
       <dependency>
-        <groupId>com.opentable.components</groupId>
-        <artifactId>otj-pg-embedded</artifactId>
-        <version>0.7.1</version>
-      </dependency>
-
-      <dependency>
         <groupId>javax.inject</groupId>
         <artifactId>javax.inject</artifactId>
         <version>1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <version>2.3.4</version>
       </dependency>
 
       <dependency>
