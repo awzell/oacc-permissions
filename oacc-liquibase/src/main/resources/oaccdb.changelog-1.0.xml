@@ -10,6 +10,10 @@
     <sqlFile path="hsqldb/create_database.sql" stripComments="true"/>
   </changeSet>
 
+  <changeSet id="1" author="awzell" dbms="mysql">
+    <sqlFile path="mysql/create_database.sql" stripComments="true"/>
+  </changeSet>
+
   <changeSet id="1" author="awzell" dbms="postgresql" runInTransaction="false">
     <sqlFile path="postgresql/create_database.sql" stripComments="true"/>
   </changeSet>
@@ -18,6 +22,12 @@
     <sqlFile path="hsqldb/create_schema.sql" stripComments="true"/>
     <sqlFile path="hsqldb/create_tables.sql" stripComments="true"/>
     <sqlFile path="hsqldb/create_user.sql" stripComments="true"/>
+  </changeSet>
+
+  <changeSet id="2" author="awzell" dbms="mysql">
+    <sqlFile path="mysql/create_schema.sql" stripComments="true"/>
+    <sqlFile path="mysql/create_tables.sql" stripComments="true"/>
+    <sqlFile path="mysql/create_user.sql" stripComments="true"/>
   </changeSet>
 
   <changeSet id="2" author="awzell" dbms="postgresql">

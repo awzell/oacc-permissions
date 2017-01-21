@@ -35,14 +35,20 @@
     </dependency>
 
     <dependency>
+      <groupId>com.wix</groupId>
+      <artifactId>wix-embedded-mysql</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
       <scope>test</scope>
     </dependency>
 
     <dependency>
-      <groupId>org.hsqldb</groupId>
-      <artifactId>hsqldb</artifactId>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
       <scope>test</scope>
     </dependency>
 
