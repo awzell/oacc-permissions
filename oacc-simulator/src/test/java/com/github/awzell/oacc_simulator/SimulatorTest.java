@@ -73,10 +73,8 @@ public class SimulatorTest extends AbstractTestNGSpringContextTests {
 
   @Configuration
   static class ContextConfiguration {
-    private final int port = SocketUtils.findAvailableTcpPort();
-
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource(EmbeddedMysql mysqld, int port) {
       Properties props = new Properties();
 
       props.put("sessionVariables", "sql_mode=NO_AUTO_VALUE_ON_ZERO");
@@ -94,15 +92,17 @@ public class SimulatorTest extends AbstractTestNGSpringContextTests {
     }
 
     @Bean(destroyMethod = "stop")
-    public EmbeddedMysql mysqld(MysqldConfig config) {
+    public EmbeddedMysql mysqld(int port) {
+      MysqldConfig config = MysqldConfig.aMysqldConfig(v5_6_latest)
+        .withPort(port)
+        .build();
+
       return EmbeddedMysql.anEmbeddedMysql(config).start();
     }
 
     @Bean
-    public MysqldConfig config() {
-      return MysqldConfig.aMysqldConfig(v5_6_latest)
-        .withPort(port)
-        .build();
+    public int port() {
+      return SocketUtils.findAvailableTcpPort();
     }
 
     @Bean
