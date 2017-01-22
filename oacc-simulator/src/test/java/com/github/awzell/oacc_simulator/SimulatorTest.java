@@ -74,13 +74,14 @@ public class SimulatorTest extends AbstractTestNGSpringContextTests {
   @Configuration
   static class ContextConfiguration {
     @Bean
-    public DataSource dataSource(EmbeddedMysql mysqld, int port) {
+    public DataSource dataSource(EmbeddedMysql mysqld) {
       Properties props = new Properties();
 
       props.put("sessionVariables", "sql_mode=NO_AUTO_VALUE_ON_ZERO");
       props.put("useCompression", "true");
 
       DriverManagerDataSource ds = new DriverManagerDataSource();
+      int port = mysqld.getConfig().getPort();
 
       ds.setConnectionProperties(props);
       ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
@@ -92,17 +93,12 @@ public class SimulatorTest extends AbstractTestNGSpringContextTests {
     }
 
     @Bean(destroyMethod = "stop")
-    public EmbeddedMysql mysqld(int port) {
+    public EmbeddedMysql mysqld() {
       MysqldConfig config = MysqldConfig.aMysqldConfig(v5_6_latest)
-        .withPort(port)
+        .withPort(SocketUtils.findAvailableTcpPort())
         .build();
 
       return EmbeddedMysql.anEmbeddedMysql(config).start();
-    }
-
-    @Bean
-    public int port() {
-      return SocketUtils.findAvailableTcpPort();
     }
 
     @Bean
