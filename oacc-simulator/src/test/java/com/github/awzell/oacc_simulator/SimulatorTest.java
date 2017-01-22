@@ -31,6 +31,7 @@ import org.testng.annotations.Test;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import static com.wix.mysql.distribution.Version.v5_6_latest;
 import static java.util.Locale.ENGLISH;
@@ -76,13 +77,16 @@ public class SimulatorTest extends AbstractTestNGSpringContextTests {
 
     @Bean
     public DataSource dataSource() {
+      Properties props = new Properties();
+
+      props.put("sessionVariables", "sql_mode=NO_AUTO_VALUE_ON_ZERO");
+      props.put("useCompression", "true");
+
       DriverManagerDataSource ds = new DriverManagerDataSource();
 
-      ds.setDriverClassName("com.mysql.jdbc.Driver");
-      ds.setUrl(String.format(ENGLISH, "jdbc:mysql://:%d/mysql?%s&%s",
-                              port,
-                              "sessionVariables=sql_mode=NO_AUTO_VALUE_ON_ZERO",
-                              "useCompression=true"));
+      ds.setConnectionProperties(props);
+      ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+      ds.setUrl(String.format(ENGLISH, "jdbc:mysql://:%d/mysql", port));
       ds.setUsername("root");
       ds.setPassword("");
 
